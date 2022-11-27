@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo -e  "\nConverting IPYNB to HTML\n"
+
+sleep 2
+
+for file in *.ipynb
+do (jupyter nbconvert --to html "$file") && rm "$file"
+done
+
+
+echo -e "\nConverting HTML to PDF\n"
+
+sleep 3
+
+for file in *.html
+do (wkhtmltopdf "$file" "${file%.html}.pdf") && rm "$file"
+done
+
